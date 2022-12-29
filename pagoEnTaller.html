@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagos Maderaxel Taller</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+        input{
+            width: 50px;
+            text-align: center;
+            margin: 3px;
+
+        }
+        label {
+          display: inline-block;
+          width: 165px;
+        }
+        button {
+            display: block;
+    margin: 20px 1%;
+    padding: 10px 20px;
+    background-color: lightblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+        }
+        #pagoTotal {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        .boton2{
+            display: flex;
+            align-items: center;
+        }
+        
+        </style>
+
+</head>
+<body>
+    <H1>Pago Maderaxel Taller</H1><a href="./pagoEnTienda.html">Puesto?</a>
+    <!-- Define los textos de cada variable de entrada -->
+    <div class="boton2">
+
+<label for="turnosTrabajados">🤩 Turnos trabajados:</label>
+<input type="text" id="turnosTrabajados" value="0">
+    <button onclick="sumarTurno()">+</button>
+    <button onclick="restarTurno()">-</button>
+</div>
+
+
+
+<div class="boton2">
+
+<label for="puntualidad">😁 Llegue puntual y meta de produccion:</label>
+<input type="text" id="puntualidad" value="0">
+<button onclick="sumarPuntualidad()">+</button>
+<button onclick="restarPuntualidad()">-</button>
+</div>
+<div class="boton2">
+
+<label for="limpieza">😁 Mantuve limpio y ordenado:</label>
+<input type="text" id="limpieza" value="0">
+<button onclick="sumarLimpieza()">+</button>
+<button onclick="restarLimpieza()">-</button>
+</div>
+<div class="boton2">
+
+<label for="faltas">😒 Falte:</label>
+<input type="text" id="faltas" value="0">
+<button onclick="sumarFaltas()">+</button>
+<button onclick="restarFaltas()">-</button>
+</div>
+<label for="descuento">Te adelantamos algo?:</label>
+<input type="text" id="descuento" value="0">
+<div class="boton2">
+
+<label for="tiempo">✨🎉Cuantos años tienes con nosttros:</label>
+<input type="text" id="tiempo" value="0">
+<button onclick="sumarTiempo()">+</button>
+<button onclick="restarTiempo()">-</button>
+</div>
+
+<!-- Muestra el texto del resultado final -->
+<p id="pagoTotal"></p>
+
+<!-- Agrega un botón para calcular el pago total -->
+<button onclick="calcularPago()">Calcular pago</button>
+
+<!-- Define la función para calcular el pago total -->
+<script>
+  function calcularPago() {
+    // Obtiene el número de turnos trabajados y el número de días que se quedó a comer en el trabajo
+    var turnosTrabajados = document.getElementById("turnosTrabajados").value;
+    
+
+    // Obtiene los valores de los inputs de puntualidad, limpieza y faltas
+    var puntualidad = document.getElementById("puntualidad").value;
+    var limpieza = document.getElementById("limpieza").value;
+    var faltas = document.getElementById("faltas").value;
+    var descuento = document.getElementById("descuento").value;
+    var tiempo = document.getElementById("tiempo").value;
+
+
+
+    // Calcula el pago base según el número de turnos trabajados
+    var pagoBase = turnosTrabajados * 116.6;
+
+    // Agrega una bonificación de 100 por cada día que se quedó a comer en el trabajo
+    var tiempo = tiempo * 50;
+
+
+    // Si se cumplen las condiciones de puntualidad, limpieza y faltas, agrega un bono de 150
+    var bono = 0;
+    if (puntualidad >= turnosTrabajados - 2 && limpieza >= turnosTrabajados -2 && faltas == 0) {
+      bono = 250;
+    }
+
+    // Calcula el pago total
+    var pagoTotal = pagoBase +  bono - descuento + tiempo;
+
+    // Muestra el pago total en pantalla
+    document.getElementById("pagoTotal").innerHTML = "Pago total: " + Math.ceil(pagoTotal);
+
+  }
+
+  function sumarTurno() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("turnosTrabajados");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) + 1;
+}
+function restarTurno() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("turnosTrabajados");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) - 1;
+}
+
+
+function sumarPuntualidad() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("puntualidad");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) + 1;
+}
+function restarPuntualidad() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("puntualidad");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) - 1;
+}
+
+function sumarLimpieza() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("limpieza");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) + 1;
+}
+function restarLimpieza() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("limpieza");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) - 1;
+}
+
+function sumarFaltas() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("faltas");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) + 1;
+}
+function restarFaltas() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("faltas");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) - 1;
+}
+function sumarTiempo() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("tiempo");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) + 1;
+}
+function restarTiempo() {
+  // Obtiene el elemento de entrada de turnos trabajados
+  var inputTurnosTrabajados = document.getElementById("tiempo");
+
+  // Incrementa el valor de turnos trabajados en 1
+  inputTurnosTrabajados.value = parseInt(inputTurnosTrabajados.value) - 1;
+}
+</script>
+    
+</body>
+</html>
